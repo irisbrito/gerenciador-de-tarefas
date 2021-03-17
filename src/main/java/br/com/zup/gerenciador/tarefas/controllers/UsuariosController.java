@@ -25,4 +25,9 @@ public class UsuariosController {
     public List <Usuario> listarUsuarios() {
         return usuariosService.listarUsuarios();
     }
+
+    @GetMapping("{email}")
+    public Usuario pesquisarUsuario(@PathVariable String email){
+        return usuariosService.pesquisarUsuarioPeloEmail(email);
+    }
 }
