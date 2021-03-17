@@ -22,9 +22,13 @@ public class TarefaController {
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.CREATED)
     public List<Tarefa> listarTarefa(){
         return tarefaService.listarTarefa();
+    }
+
+    @GetMapping("{nome}/")
+    public Tarefa retornarTarefaPeloNome(@PathVariable String nome){
+        return tarefaService.retornarTarefaPeloNome(nome);
     }
 
 }
