@@ -1,5 +1,6 @@
 package br.com.zup.gerenciador.tarefas.services;
 
+import br.com.zup.gerenciador.tarefas.models.Status;
 import br.com.zup.gerenciador.tarefas.models.Tarefa;
 import org.springframework.stereotype.Service;
 
@@ -30,4 +31,17 @@ public class TarefaService {
         }throw new RuntimeException("Tarefa não encontrada!");
     }
 
+    private void validaTarefaConcluida(Tarefa tarefa) {
+        if (!tarefa.getStatus().equals(Status.CONCLUIDO)) {
+            throw new RuntimeException("Tarefa não está concluída");
+        }
+    }
+
+    public void deletarTarefa(String nome) {
+        Tarefa tarefa = retornarTarefaPeloNome(nome);
+
+        validaTarefaConcluida(tarefa);
+
+        tarefas.remove(tarefa);
+    }
 }
