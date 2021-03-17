@@ -8,10 +8,10 @@ import java.util.List;
 
 @Service
 public class UsuariosService {
-    private List <Usuario> usuarios;
+    private List<Usuario> usuarios;
 
     public UsuariosService() {
-        usuarios = new ArrayList <>();
+        usuarios = new ArrayList<>();
     }
 
     public Usuario adicionarUsuario(Usuario usuario) {
@@ -19,16 +19,21 @@ public class UsuariosService {
         return usuario;
     }
 
-    public List <Usuario> listarUsuarios() {
+    public List<Usuario> listarUsuarios() {
         return usuarios;
     }
 
-    public Usuario pesquisarUsuarioPeloEmail(String email){
-        for (Usuario usuario: usuarios) {
-            if(usuario.getEmail().equalsIgnoreCase(email)){
+    public Usuario pesquisarUsuarioPeloEmail(String email) {
+        for (Usuario usuario : usuarios) {
+            if (usuario.getEmail().equalsIgnoreCase(email)) {
                 return usuario;
             }
         }
         throw new RuntimeException("Usuário não encontrado");
+    }
+
+    public void deletarUsuarioPeloEmail(String email) {
+        Usuario usuario = pesquisarUsuarioPeloEmail(email);
+        usuarios.remove(usuario);
     }
 }

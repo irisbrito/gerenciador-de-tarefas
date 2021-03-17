@@ -30,4 +30,10 @@ public class UsuariosController {
     public Usuario pesquisarUsuario(@PathVariable String email){
         return usuariosService.pesquisarUsuarioPeloEmail(email);
     }
+
+    @DeleteMapping("{email}/")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletarUsuarioPeloEmail(@PathVariable String email){
+        usuariosService.deletarUsuarioPeloEmail(email);
+    }
 }
