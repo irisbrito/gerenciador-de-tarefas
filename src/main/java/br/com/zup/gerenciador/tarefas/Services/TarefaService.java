@@ -1,4 +1,4 @@
-package br.com.zup.gerenciador.tarefas.Services;
+package br.com.zup.gerenciador.tarefas.services;
 
 import br.com.zup.gerenciador.tarefas.models.Tarefa;
 import org.springframework.stereotype.Service;

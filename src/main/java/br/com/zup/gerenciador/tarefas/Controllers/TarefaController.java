@@ -1,6 +1,6 @@
-package br.com.zup.gerenciador.tarefas.Controllers;
+package br.com.zup.gerenciador.tarefas.controllers;
 
-import br.com.zup.gerenciador.tarefas.Services.TarefaService;
+import br.com.zup.gerenciador.tarefas.services.TarefaService;
 import br.com.zup.gerenciador.tarefas.models.Tarefa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
