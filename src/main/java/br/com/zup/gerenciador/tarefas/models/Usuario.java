@@ -4,11 +4,11 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 public class Usuario {
-    @NotEmpty
+    @NotEmpty(message = "Nome do usuário não pode estar vazio")
     private String nome;
 
-    @NotEmpty
-    @Email
+    @NotEmpty(message = "E-mail do usuário está vazio")
+    @Email(message = "Email do usuário inválido")
     private String email;
 
     public Usuario() {
