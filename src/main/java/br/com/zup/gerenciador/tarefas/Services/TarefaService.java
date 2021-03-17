@@ -21,4 +21,13 @@ public class TarefaService {
     public List<Tarefa> listarTarefa(){
         return tarefas;
     }
+
+    public Tarefa retornarTarefaPeloNome(String nome){
+        for (Tarefa tarefa : tarefas) {
+            if(tarefa.getNome().equalsIgnoreCase(nome)){
+                return tarefa;
+            }
+        }throw new RuntimeException("Tarefa não encontrada!");
+    }
+
 }
