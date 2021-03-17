@@ -31,4 +31,9 @@ public class TarefaController {
         return tarefaService.retornarTarefaPeloNome(nome);
     }
 
+    @DeleteMapping("{nome}/")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletarTarefa(@PathVariable String nome) {
+        tarefaService.deletarTarefa(nome);
+    }
 }
