@@ -18,4 +18,7 @@ public class TarefaService {
         return tarefa;
     }
 
+    public List<Tarefa> listarTarefa(){
+        return tarefas;
+    }
 }
