@@ -14,7 +14,6 @@ public class Usuario {
     public Usuario() {
     }
 
-    }
     public String getNome() {
         return nome;
     }
@@ -30,3 +29,5 @@ public class Usuario {
     public void setEmail(String email) {
         this.email = email;
     }
+
+}
