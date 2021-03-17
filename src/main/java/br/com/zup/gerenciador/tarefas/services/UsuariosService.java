@@ -22,4 +22,13 @@ public class UsuariosService {
     public List <Usuario> listarUsuarios() {
         return usuarios;
     }
+
+    public Usuario pesquisarUsuarioPeloEmail(String email){
+        for (Usuario usuario: usuarios) {
+            if(usuario.getEmail().equalsIgnoreCase(email)){
+                return usuario;
+            }
+        }
+        throw new RuntimeException("Usuário não encontrado");
+    }
 }
