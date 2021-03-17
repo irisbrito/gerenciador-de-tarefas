@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("tarefas/")
 public class TarefaController {
@@ -18,4 +20,11 @@ public class TarefaController {
     public Tarefa cadastrarTarefa (@RequestBody Tarefa tarefa){
         return tarefaService.cadastrarTarefa(tarefa);
     }
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public List<Tarefa> listarTarefa(){
+        return tarefaService.listarTarefa();
+    }
+
 }
