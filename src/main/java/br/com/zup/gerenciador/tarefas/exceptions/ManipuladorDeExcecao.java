@@ -19,6 +19,12 @@ import java.util.List;
 
 @RestControllerAdvice
 public class ManipuladorDeExcecao extends ResponseEntityExceptionHandler {
+    /**
+     * Cria a lista contendo as DTOs dos  erros de validação
+     *
+     * @param excecao a exceção contendo a descrição dos erros
+     * @return lista de erros de validação
+     */
     private List <ErroDeValidacaoDTO> criarListaDeErrosDeValidacao(MethodArgumentNotValidException excecao) {
         List <ErroDeValidacaoDTO>erros = new ArrayList <>();
 
@@ -29,6 +35,15 @@ public class ManipuladorDeExcecao extends ResponseEntityExceptionHandler {
         return erros;
     }
 
+    /**
+     * Trata um erro de validação no sistema
+     *
+     * @param excecao exceção contendo os erros de validação
+     * @param headers os cabeçalhos da requisição
+     * @param status  o código de status da requisição
+     * @param request a requisição em si
+     * @return resposta de erro com os erros formatados
+     */
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException excecao, HttpHeaders headers, HttpStatus status, WebRequest request) {
         RespostaDeErroDTO resposta = new RespostaDeErroDTO(status, "validacao", criarListaDeErrosDeValidacao(excecao));
@@ -36,6 +51,12 @@ public class ManipuladorDeExcecao extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(status).body(resposta);
     }
 
+    /**
+     * Trata os erros gerados pelo nosso sistema
+     *
+     * @param excecao o erro gerado pelo sistema
+     * @return resposta de erro formatada
+     */
     @ExceptionHandler({ErroDoSistema.class})
     public ResponseEntity lidaComErrosDoSistema(ErroDoSistema excecao) {
         RespostaDeErroDTO resposta = new RespostaDeErroDTO(excecao.getStatus(), excecao.getTipoDoErro(), excecao.getMessage());
@@ -43,6 +64,12 @@ public class ManipuladorDeExcecao extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(resposta.getStatus()).body(resposta);
     }
 
+    /**
+     * Trata erros gerais do sistema
+     *
+     * @param excecao o erro que aconteceu
+     * @return resposta formatada
+     */
     @ExceptionHandler({RuntimeException.class})
     public ResponseEntity lidaComRuntimeException(RuntimeException excecao) {
         RespostaDeErroDTO resposta = new RespostaDeErroDTO(HttpStatus.BAD_REQUEST, "geral", excecao.getMessage());
