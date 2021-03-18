@@ -101,5 +101,16 @@ public class TarefaService {
         return Arrays.asList(tarefasNaoConcluidas, tarefasConcluidas);
     }
 
+    public List<Tarefa> pesquisarTodasAsTarefasDoUsuario (String email){
+
+        List<Tarefa> todasAsTarefas = new ArrayList<>();
+
+        for(Tarefa tarefa : tarefas){
+            if(tarefa.getEmailUsuario().equalsIgnoreCase(email)) {
+                todasAsTarefas.add(tarefa);
+            }
+        }
+            return todasAsTarefas;
+    }
 
 }
