@@ -1,5 +1,7 @@
 package br.com.zup.gerenciador.tarefas.services;
 
+import br.com.zup.gerenciador.tarefas.exceptions.TarefaNaoConcluidaException;
+import br.com.zup.gerenciador.tarefas.exceptions.TarefaNaoEncontradaException;
 import br.com.zup.gerenciador.tarefas.models.Status;
 import br.com.zup.gerenciador.tarefas.models.Tarefa;
 import org.springframework.stereotype.Service;
@@ -28,12 +30,12 @@ public class TarefaService {
             if(tarefa.getNome().equalsIgnoreCase(nome)){
                 return tarefa;
             }
-        }throw new RuntimeException("Tarefa não encontrada!");
+        }throw new TarefaNaoEncontradaException();
     }
 
     private void validaTarefaConcluida(Tarefa tarefa) {
         if (!tarefa.getStatus().equals(Status.CONCLUIDO)) {
-            throw new RuntimeException("Tarefa não está concluída");
+            throw new TarefaNaoConcluidaException();
         }
     }
 
