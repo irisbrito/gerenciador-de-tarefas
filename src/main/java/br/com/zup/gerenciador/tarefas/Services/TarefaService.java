@@ -16,10 +16,20 @@ public class TarefaService {
 
     List<Tarefa> tarefas = new ArrayList<>();
 
+    private void colocarStatusCerto(Tarefa tarefa) {
+        LocalDate hoje = LocalDate.now();
+
+        if (hoje.isAfter(tarefa.getPrazo())) {
+            tarefa.setStatus(Status.ATRASADO);
+        } else {
+            tarefa.setStatus(Status.NAO_CONCLUIDO);
+        }
+    }
+
     public Tarefa cadastrarTarefa(Tarefa tarefa){
         tarefaRepetida(tarefa.getNome());
         tarefa.setDataEntrada(LocalDate.now());
-        tarefa.setStatus(Status.NAO_CONCLUIDO);
+        colocarStatusCerto(tarefa);
         tarefas.add(tarefa);
         return tarefa;
     }
