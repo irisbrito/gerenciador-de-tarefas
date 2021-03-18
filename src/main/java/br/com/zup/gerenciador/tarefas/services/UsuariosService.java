@@ -66,7 +66,12 @@ public class UsuariosService {
     public void deletarUsuarioPeloEmail(String email) {
         Usuario usuario = pesquisarUsuarioPeloEmail(email);
         List<List<Tarefa>> tarefa = tarefaService.pesquisarTarefasDoUsuario(email);
-        usuarios.remove(usuario);
+
+        if(tarefa.get(0).size() <=0){
+            usuarios.remove(usuario);
+        } else {
+            throw new RuntimeException("Usuário possui tarefas não concluidas");
+        }
     }
 
     /**
