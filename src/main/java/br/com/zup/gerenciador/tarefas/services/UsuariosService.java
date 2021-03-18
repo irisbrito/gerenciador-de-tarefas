@@ -15,6 +15,7 @@ public class UsuariosService {
     }
 
     public Usuario adicionarUsuario(Usuario usuario) {
+        emailRepetido(usuario.getEmail());
         usuarios.add(usuario);
         return usuario;
     }
@@ -35,5 +36,13 @@ public class UsuariosService {
     public void deletarUsuarioPeloEmail(String email) {
         Usuario usuario = pesquisarUsuarioPeloEmail(email);
         usuarios.remove(usuario);
+    }
+
+    public void emailRepetido(String email){
+        for (Usuario usuario : usuarios) {
+            if(usuario.getEmail().equalsIgnoreCase(email)){
+                throw new RuntimeException("Email repetido!");
+            }
+        }
     }
 }
