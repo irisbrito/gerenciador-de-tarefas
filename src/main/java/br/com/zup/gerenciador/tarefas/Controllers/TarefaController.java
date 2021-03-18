@@ -36,4 +36,10 @@ public class TarefaController {
     public void deletarTarefa(@PathVariable String nome) {
         tarefaService.deletarTarefa(nome);
     }
+
+    @PutMapping("{nome}/")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public Tarefa atualizarTarefa(@PathVariable String nome, @RequestBody Tarefa tarefa){
+        return tarefaService.alterarTarefa(tarefa);
+    }
 }
