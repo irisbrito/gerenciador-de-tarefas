@@ -19,6 +19,7 @@ public class TarefaService {
     public Tarefa cadastrarTarefa(Tarefa tarefa){
         tarefaRepetida(tarefa.getNome());
         tarefa.setDataEntrada(LocalDate.now());
+        tarefa.setStatus(Status.NAO_CONCLUIDO);
         tarefas.add(tarefa);
         return tarefa;
     }

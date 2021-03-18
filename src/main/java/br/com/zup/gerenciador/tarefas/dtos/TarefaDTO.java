@@ -1,31 +1,28 @@
-package br.com.zup.gerenciador.tarefas.models;
+package br.com.zup.gerenciador.tarefas.dtos;
+
+import br.com.zup.gerenciador.tarefas.models.Status;
+import br.com.zup.gerenciador.tarefas.models.Tarefa;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-public class Tarefa {
+public class TarefaDTO {
     @NotEmpty(message = "Nome não pode ficar vazio!")
     private String nome;
 
     @NotEmpty(message = "Descrição não pode ficar vazio!")
     private String descricao;
 
-    @NotNull(message = "Data de entrada não pode ser nula!")
-    private LocalDate dataEntrada;
-
-    @NotEmpty(message = "Prazo não pode ficar vazio!")
+    @NotNull(message = "Prazo não pode ser nulo")
     private LocalDate prazo;
 
     @Email(message = "Email inválido!")
     @NotEmpty(message = "Email não pode ficar vazio!")
     private String emailUsuario;
 
-    @NotNull(message = "Status não pode ser nulo!")
-    private Status status;
-
-    public Tarefa() {
+    public TarefaDTO() {
     }
 
     public String getNome() {
@@ -44,14 +41,6 @@ public class Tarefa {
         this.descricao = descricao;
     }
 
-    public LocalDate getDataEntrada() {
-        return dataEntrada;
-    }
-
-    public void setDataEntrada(LocalDate dataEntrada) {
-        this.dataEntrada = dataEntrada;
-    }
-
     public LocalDate getPrazo() {
         return prazo;
     }
@@ -68,11 +57,14 @@ public class Tarefa {
         this.emailUsuario = emailUsuario;
     }
 
-    public Status getStatus() {
-        return status;
-    }
+    public Tarefa converterParaTarefa() {
+        Tarefa tarefa = new Tarefa();
 
-    public void setStatus(Status status) {
-        this.status = status;
+        tarefa.setNome(nome);
+        tarefa.setDescricao(descricao);
+        tarefa.setEmailUsuario(emailUsuario);
+        tarefa.setPrazo(prazo);
+
+        return tarefa;
     }
 }
