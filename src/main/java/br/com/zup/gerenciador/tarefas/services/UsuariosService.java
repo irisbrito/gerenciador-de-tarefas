@@ -44,11 +44,12 @@ public class UsuariosService {
     public void deletarUsuarioPeloEmail(String email) {
         Usuario usuario = pesquisarUsuarioPeloEmail(email);
         List<List<Tarefa>> tarefa = tarefaService.pesquisarTarefasDoUsuario(email);
+
         if(tarefa.get(0).size() <=0){
             usuarios.remove(usuario);
+        } else {
+            throw new RuntimeException("Usuário possui tarefas não concluidas");
         }
-
-        throw new RuntimeException("Usuário possui tarefas não concluidas");
     }
 
     public void emailRepetido(String email){
