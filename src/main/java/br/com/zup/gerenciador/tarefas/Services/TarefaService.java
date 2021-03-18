@@ -1,5 +1,6 @@
 package br.com.zup.gerenciador.tarefas.services;
 
+import br.com.zup.gerenciador.tarefas.exceptions.ListaDeTarefasNaoConcluidasException;
 import br.com.zup.gerenciador.tarefas.exceptions.TarefaNaoConcluidaException;
 import br.com.zup.gerenciador.tarefas.exceptions.TarefaNaoEncontradaException;
 import br.com.zup.gerenciador.tarefas.exceptions.TarefaRepetidaExceptions;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -80,4 +82,24 @@ public class TarefaService {
             }
         }
     }
+
+    public List<List<Tarefa>> pesquisarTarefasDoUsuario(String email){
+        List<Tarefa> todasAsTarefas = pesquisarTodasAsTarefasDoUsuario(email);
+        List<Tarefa> tarefasNaoConcluidas = new ArrayList<>();
+        List<Tarefa> tarefasConcluidas = new ArrayList<>();
+
+        for(Tarefa tarefa : todasAsTarefas){
+            if(tarefa.getStatus().equals(Status.NAO_CONCLUIDO)){
+                tarefasNaoConcluidas.add(tarefa);
+
+            } else {
+                tarefasConcluidas.add(tarefa);
+            }
+
+        }
+
+        return Arrays.asList(tarefasNaoConcluidas, tarefasConcluidas);
+    }
+
+
 }
