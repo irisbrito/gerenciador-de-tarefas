@@ -1,8 +1,9 @@
 package br.com.zup.gerenciador.tarefas.exceptions;
 
-public class EmailRepetidoException extends RuntimeException{
+import org.springframework.http.HttpStatus;
 
-    public EmailRepetidoException(String message) {
-        super(message);
+public class EmailRepetidoException extends ErroDoSistema {
+    public EmailRepetidoException() {
+        super(HttpStatus.BAD_REQUEST, "usuario", "E-mail do usuário repetido");
     }
 }

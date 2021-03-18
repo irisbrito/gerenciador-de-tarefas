@@ -1,5 +1,6 @@
 package br.com.zup.gerenciador.tarefas.services;
 
+import br.com.zup.gerenciador.tarefas.exceptions.EmailRepetidoException;
 import br.com.zup.gerenciador.tarefas.exceptions.UsuarioNaoEncontradoException;
 import br.com.zup.gerenciador.tarefas.models.Usuario;
 import org.springframework.stereotype.Service;
@@ -43,7 +44,7 @@ public class UsuariosService {
     public void emailRepetido(String email){
         for (Usuario usuario : usuarios) {
             if(usuario.getEmail().equalsIgnoreCase(email)){
-                throw new RuntimeException("Email repetido!");
+                throw new EmailRepetidoException();
             }
         }
     }
