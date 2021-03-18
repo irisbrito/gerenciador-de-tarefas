@@ -2,21 +2,27 @@ package br.com.zup.gerenciador.tarefas.models;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 public class Tarefa {
     @NotEmpty(message = "Nome não pode ficar vazio!")
     private String nome;
+
     @NotEmpty(message = "Descrição não pode ficar vazio!")
     private String descricao;
-    @NotEmpty(message = "Data de entrada não pode ficar vazio!")
+
+    @NotNull(message = "Data de entrada não pode ser nula!")
     private LocalDate dataEntrada;
+
     @NotEmpty(message = "Prazo não pode ficar vazio!")
     private LocalDate prazo;
+
     @Email(message = "Email inválido!")
     @NotEmpty(message = "Email não pode ficar vazio!")
     private String emailUsuario;
-    @NotEmpty(message = "Status não pode ficar vazio!")
+
+    @NotNull(message = "Status não pode ser nulo!")
     private Status status;
 
     public Tarefa() {

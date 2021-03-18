@@ -5,6 +5,7 @@ import br.com.zup.gerenciador.tarefas.models.Tarefa;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 public class TarefaDTO {
@@ -14,15 +15,12 @@ public class TarefaDTO {
     @NotEmpty(message = "Descrição não pode ficar vazio!")
     private String descricao;
 
-    @NotEmpty(message = "Prazo não pode ficar vazio!")
+    @NotNull(message = "Prazo não pode ser nulo")
     private LocalDate prazo;
 
     @Email(message = "Email inválido!")
     @NotEmpty(message = "Email não pode ficar vazio!")
     private String emailUsuario;
-
-    @NotEmpty(message = "Status não pode ficar vazio!")
-    private Status status;
 
     public TarefaDTO() {
     }
@@ -59,14 +57,6 @@ public class TarefaDTO {
         this.emailUsuario = emailUsuario;
     }
 
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
     public Tarefa converterParaTarefa() {
         Tarefa tarefa = new Tarefa();
 
@@ -74,7 +64,6 @@ public class TarefaDTO {
         tarefa.setDescricao(descricao);
         tarefa.setEmailUsuario(emailUsuario);
         tarefa.setPrazo(prazo);
-        tarefa.setStatus(status);
 
         return tarefa;
     }

@@ -17,6 +17,7 @@ public class TarefaService {
 
     public Tarefa cadastrarTarefa(Tarefa tarefa){
         tarefa.setDataEntrada(LocalDate.now());
+        tarefa.setStatus(Status.NAO_CONCLUIDO);
         tarefas.add(tarefa);
         return tarefa;
     }
