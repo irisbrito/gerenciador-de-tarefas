@@ -1,5 +1,6 @@
 package br.com.zup.gerenciador.tarefas.services;
 
+import br.com.zup.gerenciador.tarefas.exceptions.UsuarioNaoEncontradoException;
 import br.com.zup.gerenciador.tarefas.models.Usuario;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +31,8 @@ public class UsuariosService {
                 return usuario;
             }
         }
-        throw new RuntimeException("Usuário não encontrado");
+
+        throw new UsuarioNaoEncontradoException();
     }
 
     public void deletarUsuarioPeloEmail(String email) {
