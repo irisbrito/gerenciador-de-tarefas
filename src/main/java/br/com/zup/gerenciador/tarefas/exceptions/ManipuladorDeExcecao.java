@@ -36,6 +36,13 @@ public class ManipuladorDeExcecao extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(status).body(resposta);
     }
 
+    @ExceptionHandler({ErroDoSistema.class})
+    public ResponseEntity lidaComErrosDoSistema(ErroDoSistema excecao) {
+        RespostaDeErroDTO resposta = new RespostaDeErroDTO(excecao.getStatus(), excecao.getTipoDoErro(), excecao.getMessage());
+
+        return ResponseEntity.status(resposta.getStatus()).body(resposta);
+    }
+
     @ExceptionHandler({RuntimeException.class})
     public ResponseEntity lidaComRuntimeException(RuntimeException excecao) {
         RespostaDeErroDTO resposta = new RespostaDeErroDTO(HttpStatus.BAD_REQUEST, "geral", excecao.getMessage());

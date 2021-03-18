@@ -7,7 +7,7 @@ public class ErroDoSistema extends RuntimeException {
     private String tipoDoErro;
 
     public ErroDoSistema(HttpStatus status, String tipoDoErro, String mensagem) {
-        super(mensagem;);
+        super(mensagem);
         this.status= status;
         this.tipoDoErro = tipoDoErro;;
     }
