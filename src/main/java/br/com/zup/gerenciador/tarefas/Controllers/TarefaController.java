@@ -1,11 +1,13 @@
 package br.com.zup.gerenciador.tarefas.controllers;
 
+import br.com.zup.gerenciador.tarefas.dtos.TarefaDTO;
 import br.com.zup.gerenciador.tarefas.services.TarefaService;
 import br.com.zup.gerenciador.tarefas.models.Tarefa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -17,8 +19,8 @@ public class TarefaController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Tarefa cadastrarTarefa (@RequestBody Tarefa tarefa){
-        return tarefaService.cadastrarTarefa(tarefa);
+    public Tarefa cadastrarTarefa (@Valid @RequestBody TarefaDTO tarefaDTO){
+        return tarefaService.cadastrarTarefa(tarefaDTO.converterParaTarefa());
     }
 
     @GetMapping
