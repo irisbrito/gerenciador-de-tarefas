@@ -16,6 +16,11 @@ public class TarefaService {
 
     List<Tarefa> tarefas = new ArrayList<>();
 
+    /**
+     * Coloca o status da tarefa baseando na data
+     *
+     * @param tarefa a tarefa que vai ser alterada
+     */
     private void colocarStatusCerto(Tarefa tarefa) {
         LocalDate hoje = LocalDate.now();
 
@@ -26,6 +31,12 @@ public class TarefaService {
         }
     }
 
+    /**
+     *Cadastra uma tarefa no sistema
+     *
+     * @param tarefa a tarefa a ser cadastrada
+     * @return tarefa
+     */
     public Tarefa cadastrarTarefa(Tarefa tarefa){
         tarefaRepetida(tarefa.getNome());
         tarefa.setDataEntrada(LocalDate.now());
@@ -34,10 +45,21 @@ public class TarefaService {
         return tarefa;
     }
 
+    /**
+     * Lista todas as tarefas cadastradas no sistema
+     *
+     * @return lista de tarefas
+     */
     public List<Tarefa> listarTarefa(){
         return tarefas;
     }
 
+    /**
+     * Retorna a tarefa com o nome passado como parâmetro
+     *
+     * @param nome string com o nome da tarefa
+     * @return tarefa
+     */
     public Tarefa retornarTarefaPeloNome(String nome){
         for (Tarefa tarefa : tarefas) {
             if(tarefa.getNome().equalsIgnoreCase(nome)){
@@ -46,12 +68,22 @@ public class TarefaService {
         }throw new TarefaNaoEncontradaException();
     }
 
+    /**
+     * Joga uma exceção se a tarefa não estiver concluída
+     *
+     * @param tarefa a tarefa a validar
+     */
     private void validaTarefaConcluida(Tarefa tarefa) {
         if (!tarefa.getStatus().equals(Status.CONCLUIDO)) {
             throw new TarefaNaoConcluidaException();
         }
     }
 
+    /**
+     * Deleta uma tarefa pelo nome
+     *
+     * @param nome string com o nome da tarefa
+     */
     public void deletarTarefa(String nome) {
         Tarefa tarefa = retornarTarefaPeloNome(nome);
 
@@ -60,6 +92,12 @@ public class TarefaService {
         tarefas.remove(tarefa);
     }
 
+    /**
+     * Altera uma tarefa
+     *
+     * @param tarefa os dados que serão alterados
+     * @return tarefa atualizada
+     */
     public Tarefa alterarTarefa(Tarefa tarefa){
        Tarefa tarefaAtualizada = retornarTarefaPeloNome(tarefa.getNome());
 
@@ -73,6 +111,11 @@ public class TarefaService {
        return tarefaAtualizada;
     }
 
+    /**
+     * Valida se a tarefa está repetida ou não no sistema
+     *
+     * @param nome string com o nome da tarefa
+     */
     public void tarefaRepetida(String nome){
         for (Tarefa tarefa : tarefas) {
             if(tarefa.getNome().equalsIgnoreCase(nome)){
