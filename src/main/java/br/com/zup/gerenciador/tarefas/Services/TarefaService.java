@@ -44,4 +44,17 @@ public class TarefaService {
 
         tarefas.remove(tarefa);
     }
+
+    public Tarefa alterarTarefa(Tarefa tarefa){
+       Tarefa tarefaAtualizada = retornarTarefaPeloNome(tarefa.getNome());
+
+       tarefaAtualizada.setNome(tarefa.getNome());
+       tarefaAtualizada.setStatus(tarefa.getStatus());
+       tarefaAtualizada.setDescricao(tarefa.getDescricao());
+       tarefaAtualizada.setPrazo(tarefa.getPrazo());
+       tarefaAtualizada.setEmailUsuario(tarefa.getEmailUsuario());
+       tarefaAtualizada.setDataEntrada(tarefa.getDataEntrada());
+
+       return tarefaAtualizada;
+    }
 }
