@@ -12,7 +12,6 @@ public class Tarefa {
     @NotEmpty(message = "Descrição não pode ficar vazio!")
     private String descricao;
 
-    @NotNull(message = "Data de entrada não pode ser nula!")
     private LocalDate dataEntrada;
 
     @NotEmpty(message = "Prazo não pode ficar vazio!")
