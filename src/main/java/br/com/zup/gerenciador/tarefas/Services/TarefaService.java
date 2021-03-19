@@ -143,7 +143,7 @@ public class TarefaService {
         List<Tarefa> tarefasConcluidas = new ArrayList<>();
 
         for(Tarefa tarefa : todasAsTarefas){
-            if(tarefa.getStatus() == Status.NAO_CONCLUIDO){
+            if(tarefa.getStatus() == Status.NAO_CONCLUIDO || tarefa.getStatus() == Status.ATRASADO){
                 tarefasNaoConcluidas.add(tarefa);
 
             } else {

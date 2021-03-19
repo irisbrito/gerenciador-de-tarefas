@@ -7,8 +7,8 @@ import java.util.List;
 
 public class ListaDeTarefasDTO {
 
-    List<Tarefa> tarefasConcluidas = new ArrayList<>();
-    List<Tarefa> tarefasNaoConcluidas = new ArrayList();
+    List<Tarefa> tarefasConcluidas;
+    List<Tarefa> tarefasNaoConcluidas;
 
     public ListaDeTarefasDTO() {
     }
@@ -18,6 +18,10 @@ public class ListaDeTarefasDTO {
         this.tarefasNaoConcluidas = tarefasNaoConcluidas;
     }
 
+    public ListaDeTarefasDTO(List <List <Tarefa>> listaDeTarefas) {
+        this.tarefasNaoConcluidas = listaDeTarefas.get(0);
+        this.tarefasConcluidas = listaDeTarefas.get(1);
+    }
     public List<Tarefa> getTarefasConcluidas() {
         return tarefasConcluidas;
     }
