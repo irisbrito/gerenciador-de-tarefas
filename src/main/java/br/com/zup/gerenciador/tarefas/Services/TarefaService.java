@@ -34,6 +34,16 @@ public class TarefaService {
     }
 
     /**
+     * Ordena as tarefas por data, para as tarefas que tem um prazo menor ficarem no início
+     *
+     */
+    private void ordenarTarefas() {
+        tarefas.sort((Tarefa primeiraTarefa, Tarefa segundaTarefa) -> {
+            return primeiraTarefa.getPrazo().compareTo(segundaTarefa.getPrazo());
+        });
+    }
+
+    /**
      *Cadastra uma tarefa no sistema
      *
      * @param tarefa a tarefa a ser cadastrada
@@ -44,6 +54,7 @@ public class TarefaService {
         tarefa.setDataEntrada(LocalDate.now());
         colocarStatusCerto(tarefa);
         tarefas.add(tarefa);
+        ordenarTarefas();;
         return tarefa;
     }
 
