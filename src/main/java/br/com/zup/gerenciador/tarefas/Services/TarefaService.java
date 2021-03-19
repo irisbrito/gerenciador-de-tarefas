@@ -46,7 +46,7 @@ public class TarefaService {
      */
     public Tarefa cadastrarTarefa(Tarefa tarefa){
         usuariosService.pesquisarUsuarioPeloEmail(tarefa.getEmailUsuario());
-        tarefaRepetida(tarefa.getNome());
+        validarTarefaRepetida(tarefa.getNome());
         tarefa.setDataEntrada(LocalDate.now());
         colocarStatusCerto(tarefa);
         tarefas.add(tarefa);
@@ -124,7 +124,7 @@ public class TarefaService {
      *
      * @param nome string com o nome da tarefa
      */
-    public void tarefaRepetida(String nome){
+    public void validarTarefaRepetida(String nome){
         for (Tarefa tarefa : tarefas) {
             if(tarefa.getNome().equalsIgnoreCase(nome)){
                 throw new TarefaRepetidaExceptions();
