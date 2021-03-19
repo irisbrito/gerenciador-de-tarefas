@@ -4,6 +4,6 @@ import org.springframework.http.HttpStatus;
 
 public class EmailRepetidoException extends ErroDoSistema {
     public EmailRepetidoException() {
-        super(HttpStatus.BAD_REQUEST, "usuario", "E-mail do usuário repetido");
+        super(HttpStatus.BAD_REQUEST, "usuario", "E-mail já cadastrado!");
     }
 }
