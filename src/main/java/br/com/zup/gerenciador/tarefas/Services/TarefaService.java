@@ -119,7 +119,6 @@ public class TarefaService {
        tarefaAtualizada.setDescricao(tarefa.getDescricao());
        tarefaAtualizada.setPrazo(tarefa.getPrazo());
        tarefaAtualizada.setEmailUsuario(tarefa.getEmailUsuario());
-       tarefaAtualizada.setDataEntrada(tarefa.getDataEntrada());
 
        return tarefaAtualizada;
     }
