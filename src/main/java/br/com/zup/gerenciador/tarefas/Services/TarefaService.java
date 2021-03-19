@@ -81,7 +81,7 @@ public class TarefaService {
      *
      * @param tarefa a tarefa a validar
      */
-    private void validaTarefaConcluida(Tarefa tarefa) {
+    private void validarTarefaConcluida(Tarefa tarefa) {
         if (!tarefa.getStatus().equals(Status.CONCLUIDO)) {
             throw new TarefaNaoConcluidaException();
         }
@@ -95,7 +95,7 @@ public class TarefaService {
     public void deletarTarefa(String nome) {
         Tarefa tarefa = retornarTarefaPeloNome(nome);
 
-        validaTarefaConcluida(tarefa);
+        validarTarefaConcluida(tarefa);
 
         tarefas.remove(tarefa);
     }
