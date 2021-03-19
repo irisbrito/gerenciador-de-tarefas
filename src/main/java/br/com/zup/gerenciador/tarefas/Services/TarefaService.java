@@ -6,6 +6,8 @@ import br.com.zup.gerenciador.tarefas.exceptions.TarefaNaoEncontradaException;
 import br.com.zup.gerenciador.tarefas.exceptions.TarefaRepetidaExceptions;
 import br.com.zup.gerenciador.tarefas.models.Status;
 import br.com.zup.gerenciador.tarefas.models.Tarefa;
+import br.com.zup.gerenciador.tarefas.models.Usuario;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -17,6 +19,9 @@ import java.util.List;
 public class TarefaService {
 
     List<Tarefa> tarefas = new ArrayList<>();
+
+    @Autowired
+    UsuariosService usuariosService;
 
     /**
      * Coloca o status da tarefa baseando na data
@@ -40,6 +45,7 @@ public class TarefaService {
      * @return tarefa
      */
     public Tarefa cadastrarTarefa(Tarefa tarefa){
+        usuariosService.pesquisarUsuarioPeloEmail(tarefa.getEmailUsuario());
         tarefaRepetida(tarefa.getNome());
         tarefa.setDataEntrada(LocalDate.now());
         colocarStatusCerto(tarefa);
