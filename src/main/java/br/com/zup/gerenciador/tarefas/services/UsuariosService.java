@@ -86,4 +86,14 @@ public class UsuariosService {
             }
         }
     }
+
+    /**
+     * Pega as tarefas de um usuário específico
+     *
+     * @param email o email do usuário
+     * @return lista contendo as listas de tarefas do usuário
+     */
+    public List <List <Tarefa>> pegarTarefasDoUsuario(String email) {
+        return tarefaService.pesquisarTarefasDoUsuario(email);
+    }
 }
