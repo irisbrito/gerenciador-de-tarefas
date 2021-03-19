@@ -11,13 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UsuariosService {
+public class UsuarioService {
     private List<Usuario> usuarios;
 
     @Autowired
     TarefaService tarefaService;
 
-    public UsuariosService() {
+    public UsuarioService() {
         usuarios = new ArrayList<>();
     }
 
