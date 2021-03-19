@@ -1,5 +1,8 @@
 package br.com.zup.gerenciador.tarefas.controllers;
 
+import br.com.zup.gerenciador.tarefas.dtos.ListaDeTarefasDTO;
+import br.com.zup.gerenciador.tarefas.dtos.UsuarioETarefasDTO;
+import br.com.zup.gerenciador.tarefas.models.Tarefa;
 import br.com.zup.gerenciador.tarefas.models.Usuario;
 import br.com.zup.gerenciador.tarefas.services.UsuariosService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +30,11 @@ public class UsuariosController {
     }
 
     @GetMapping("{email}")
-    public Usuario pesquisarUsuario(@PathVariable String email){
-        return usuariosService.pesquisarUsuarioPeloEmail(email);
+    public UsuarioETarefasDTO pesquisarUsuario(@PathVariable String email) {
+        Usuario usuario = usuariosService.pesquisarUsuarioPeloEmail(email);
+        List <List <Tarefa>> tarefas = usuariosService.pegarTarefasDoUsuario(email);
+        ListaDeTarefasDTO listaDeTarefasDTO = new ListaDeTarefasDTO(tarefas);
+        return new UsuarioETarefasDTO(usuario, listaDeTarefasDTO);
     }
 
     @DeleteMapping("{email}/")
