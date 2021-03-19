@@ -44,4 +44,5 @@ public class TarefaController {
     public Tarefa atualizarTarefa(@PathVariable String nome, @RequestBody Tarefa tarefa){
         return tarefaService.alterarTarefa(tarefa);
     }
+    
 }
