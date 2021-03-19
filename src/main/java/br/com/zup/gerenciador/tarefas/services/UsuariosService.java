@@ -28,7 +28,7 @@ public class UsuariosService {
      * @return usuario
      */
     public Usuario adicionarUsuario(Usuario usuario) {
-        emailRepetido(usuario.getEmail());
+        verificarEmailRepetido(usuario.getEmail());
         usuarios.add(usuario);
         return usuario;
     }
@@ -79,7 +79,7 @@ public class UsuariosService {
      *
      * @param email string com o e-mail do usuário
      */
-    public void emailRepetido(String email){
+    public void verificarEmailRepetido(String email){
         for (Usuario usuario : usuarios) {
             if(usuario.getEmail().equalsIgnoreCase(email)){
                 throw new EmailRepetidoException();
