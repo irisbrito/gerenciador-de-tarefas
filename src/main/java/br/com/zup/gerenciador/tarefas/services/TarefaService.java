@@ -50,7 +50,7 @@ public class TarefaService {
      * @return tarefa
      */
     public Tarefa cadastrarTarefa(Tarefa tarefa){
-        tarefaRepetida(tarefa.getNome());
+        validarTarefaRepetida(tarefa.getNome());
         tarefa.setDataEntrada(LocalDate.now());
         colocarStatusCerto(tarefa);
         tarefas.add(tarefa);
@@ -86,7 +86,7 @@ public class TarefaService {
      *
      * @param tarefa a tarefa a validar
      */
-    private void validaTarefaConcluida(Tarefa tarefa) {
+    private void validarTarefaConcluida(Tarefa tarefa) {
         if (!tarefa.getStatus().equals(Status.CONCLUIDO)) {
             throw new TarefaNaoConcluidaException();
         }
@@ -100,7 +100,7 @@ public class TarefaService {
     public void deletarTarefa(String nome) {
         Tarefa tarefa = retornarTarefaPeloNome(nome);
 
-        validaTarefaConcluida(tarefa);
+        validarTarefaConcluida(tarefa);
 
         tarefas.remove(tarefa);
     }
@@ -128,7 +128,7 @@ public class TarefaService {
      *
      * @param nome string com o nome da tarefa
      */
-    public void tarefaRepetida(String nome){
+    public void validarTarefaRepetida(String nome){
         for (Tarefa tarefa : tarefas) {
             if(tarefa.getNome().equalsIgnoreCase(nome)){
                 throw new TarefaRepetidaExceptions();
@@ -136,6 +136,11 @@ public class TarefaService {
         }
     }
 
+    /**
+     * O método pesquisa as tarefas do usuário dentro da lista criada com todas as tarefas do usuário
+     * @param email
+     * @return a lista com todas as tarefas do usuário e dentro dela mais duas listas: uma que contém as tarefas concluídas e outra com as não concluídas
+     */
     public List<List<Tarefa>> pesquisarTarefasDoUsuario(String email){
         List<Tarefa> todasAsTarefas = pesquisarTodasAsTarefasDoUsuario(email);
         List<Tarefa> tarefasNaoConcluidas = new ArrayList<>();
@@ -154,6 +159,11 @@ public class TarefaService {
         return Arrays.asList(tarefasNaoConcluidas, tarefasConcluidas);
     }
 
+    /**
+     * O método faz a busca de todas as tarefas do usuário de acordo com o e-mail
+     * @param email
+     * @return lista com todas as tarefas do usuário
+     */
     public List<Tarefa> pesquisarTodasAsTarefasDoUsuario (String email){
 
         List<Tarefa> todasAsTarefas = new ArrayList<>();
